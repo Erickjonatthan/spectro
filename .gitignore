@@ -1,1 +1,13 @@
 
+sintatico.tab.c
+sintatico.tab.h
+sintatico.output
+lex.yy.c
+mini
+*.o
+*.dSYM/
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*~
