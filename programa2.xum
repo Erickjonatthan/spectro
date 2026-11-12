@@ -1,0 +1,8 @@
+? Programa 2: Decisao
+idade R$ {20}
+se (idade => 18) ent %
+    ss(#Maior de idade#)
+%
+senao %
+    ss(#Menor de idade#)
+%

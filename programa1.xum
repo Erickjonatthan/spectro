@@ -1,0 +1,5 @@
+? Programa 1: Calculo
+a R$ {10}
+b R$ {4}
+resultado R$ {a + b * 2}
+ss(#Resultado: #, resultado)

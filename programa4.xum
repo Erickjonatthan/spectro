@@ -1,0 +1,5 @@
+? Programa 4: Funcao
+funsao dobro(n R$) %
+    retorne n * 2
+%
+ss(dobro(7))
