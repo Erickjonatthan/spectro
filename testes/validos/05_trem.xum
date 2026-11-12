@@ -1,0 +1,7 @@
+? Teste 05: Uso de trem (lista)
+minha_lista trem {[10, 20, 30]}
+ss(#Lista original: #, minha_lista)
+minha_lista[1] { 99 }
+ss(#Lista modificada: #, minha_lista)
+ss(#Item 0: #, minha_lista[0])
+ss(#Item 1: #, minha_lista[1])

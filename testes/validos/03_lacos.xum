@@ -1,0 +1,15 @@
+? Teste 03: Lacos enquanto e repete com pare
+contador R$ {1}
+enquanto (contador <= 3) ent %
+    ss(#Enquanto: #, contador)
+    contador { contador + 1 }
+%
+
+num R$ {10}
+repete %
+    ss(#Repete: #, num)
+    num { num - 1 }
+    se (num << 8) ent %
+        pare
+    %
+%

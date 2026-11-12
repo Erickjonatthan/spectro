@@ -1,0 +1,6 @@
+? Teste 01: Operações aritméticas completas e precedência
+a R$ {10}
+b R$ {5}
+c R$ {2}
+res R$ {(a + b) * c - a / b}
+ss(#Resultado expr: #, res)

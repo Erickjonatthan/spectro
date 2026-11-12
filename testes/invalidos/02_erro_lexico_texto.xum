@@ -1,0 +1,3 @@
+? Erro lexico: texto sem fechar hashtag
+msg txt {#Texto nao fechado
+ss(msg)

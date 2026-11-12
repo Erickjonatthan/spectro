@@ -1,0 +1,6 @@
+? Teste 04: Funcao recursiva ou multiplas chamadas
+funsao soma3(a R$, b R$, c R$) %
+    retorne a + b + c
+%
+total R$ {soma3(10, 20, 30)}
+ss(#Total soma3: #, total)

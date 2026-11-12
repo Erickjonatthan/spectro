@@ -1,0 +1,9 @@
+? Teste 02: Condicional encadeada e operadores logicos
+idade R$ {17}
+autorizado bool {vdd}
+se (idade => 18 | autorizado == vdd) ent %
+    ss(#Acesso liberado#)
+%
+senao %
+    ss(#Acesso negado#)
+%

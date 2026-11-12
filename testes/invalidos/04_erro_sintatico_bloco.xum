@@ -1,0 +1,4 @@
+? Erro sintatico: bloco sem fechar porcentagem
+se (10 >> 5) ent %
+    ss(#Dentro do bloco#)
+ss(#Fim sem fechar bloco#)
