@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "arvore.h"
 /* Arquivo de tokens gerado pelo Bison a partir de sintatico.y */
 #include "sintatico.tab.h"
 %}
