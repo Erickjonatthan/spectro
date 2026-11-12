@@ -1,4 +1,3 @@
-
 # Ordem: Bison gera o parser (e o .h com os tokens) -> Flex gera o lexer -> gcc compila tudo
 
 mini: sintatico.y lexico.l arvore.c interpretador.c main.c

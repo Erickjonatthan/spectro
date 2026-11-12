@@ -2,21 +2,22 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-/* O arquivo parser.tab.h será gerado automaticamente pelo Bison */
-#include "parser.tab.h" 
+/* Arquivo de tokens gerado pelo Bison a partir de sintatico.y */
+#include "sintatico.tab.h"
 %}
 
-/* noyywrap: apenas um arquivo de entrada.
-   yylineno: o Flex conta as linhas automaticamente para mensagens de erro */
+/* noyywrap: leitura de arquivo único
+   yylineno: rastreamento automático do número da linha para mensagens de erro */
 %option noyywrap yylineno
 
 %%
 
-/* --- PALAVRAS RESERVADAS / COMANDOS --- */
+/* --- PALAVRAS RESERVADAS E COMANDOS --- */
 "se"            { return SE; }
 "senao"         { return SENAO; }
 "ent"           { return ENT; }
 "funsao"        { return FUNSAO; }
+"stopmeters"    { return STOPMETERS; } 
 "retorne"       { return RETORNE; }
 "ate"           { return ATE; }
 "enquanto"      { return ENQUANTO; }
@@ -37,28 +38,34 @@
 "vdd"           { yylval.valor_bool = 1; return VAL_BOOL; }
 "fls"           { yylval.valor_bool = 0; return VAL_BOOL; }
 
-/* --- IDENTIFICADORES e LITERAIS --- */
-/* Identificador: começa com letra, seguido por letras, números ou '_' */
+/* --- IDENTIFICADORES E LITERAIS --- */
+/* Começa com letra (case-sensitive), seguido por letras, números ou '_' */
 [a-zA-Z][a-zA-Z0-9_]*   { yylval.nome = strdup(yytext); return IDENTIFICADOR; }
 
-/* Número: Inteiro ou Real (ex: 7 ou 3.14) */
+/* Número inteiro ou real */
 [0-9]+(\.[0-9]+)?       { yylval.valor_num = atof(yytext); return NUMERO; }
 
-/* Texto: qualquer coisa entre caracteres '#' */
-#[^#]*#                 { 
-                          // Remove os '#' das pontas se quiser salvar apenas o conteúdo
-                          yylval.texto = strdup(yytext); 
-                          return TEXTO; 
+/* Texto delimitado por '#' (armazena o conteúdo sem os '#' das pontas) */
+#[^#\n]*#               {
+                          char *conteudo = strdup(yytext + 1);
+                          conteudo[strlen(conteudo) - 1] = '\0';
+                          yylval.texto = conteudo;
+                          return TEXTO;
                         }
 
-/* Caractere único: apenas uma letra/símbolo (o documento não detalhou se usa aspas, assumindo literal por enquanto) */
-"'"."'"                 { yylval.caractere = yytext[1]; return CARACTERE; }
+/* Erro específico se abrir '#' e quebrar a linha sem fechar */
+#[^#\n]*                {
+                          printf("ERRO léxico na linha %d: texto não fechado com '#'\n", yylineno);
+                          exit(1);
+                        }
 
+/* Caractere único entre aspas simples (evita conflito com variáveis de 1 letra como 'a' ou 'i') */
+"'"."'"                 { yylval.caractere = yytext[1]; return CARACTERE; }
 
 /* --- OPERADORES ARITMÉTICOS --- */
 "+"             { return SOMAR; }
 "-"             { return SUBTRAIR; }
-*"             { return MULTIPLICAR; }
+"*"             { return MULTIPLICAR; }
 "/"             { return DIVIDIR; }
 
 /* --- OPERADORES RELACIONAIS E LÓGICOS --- */
@@ -71,24 +78,29 @@
 "|"             { return OP_OU; }
 "!"             { return OP_NAO; }
 
-/* --- DELIMITADORES --- */
+/* --- DELIMITADORES E PONTUAÇÃO --- */
 "("             { return ABRE_PARENTESES; }
 ")"             { return FECHA_PARENTESES; }
 "{"             { return ABRE_CHAVES; }
 "}"             { return FECHA_CHAVES; }
 "["             { return ABRE_COLCHETES; }
 "]"             { return FECHA_COLCHETES; }
-"%"             { return PORCENTAGEM; } /* Usado para blocos de código */
+"%"             { return PORCENTAGEM; }
 ","             { return VIRGULA; }
 
 /* --- COMENTÁRIOS --- */
-"?"[^?\n]*              { /* Comentário de uma linha: ignora até o fim da linha */ }
-"\?\?"([^*]|\?)*"\?\?"  { /* Comentário multilinha ?? ... ?? : ignora */ }
+/* Multilinha (?? ... ??) deve vir antes do comentário de linha única (?) */
+"\?\?"([^?]|\?[^?])*"\?\?"  { /* Ignora comentário de bloco */ }
+"?"[^\n]*                   { /* Ignora comentário de linha única */ }
 
 /* --- ESPAÇOS E QUEBRAS DE LINHA --- */
-[ \t\r]+        { /* Espaços e tabs horizontais são ignorados */ }
-"\n"            { return FIM_LINHA; } /* A quebra de linha termina o comando! */
+[ \t\r]+        { /* Ignora espaços e tabulações */ }
+"\n"            { return FIM_LINHA; }
 
-.               { printf("ERRO léxico na linha %d: caractere '%s' desconhecido\n", yylineno, yytext); exit(1); }
+/* --- CARACTERE INVÁLIDO --- */
+.               {
+                  printf("ERRO léxico na linha %d: caractere '%s' desconhecido\n", yylineno, yytext);
+                  exit(1);
+                }
 
 %%
