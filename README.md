@@ -1,11 +1,11 @@
 # Spectro.xum
 
-Linguagem de programação imperativa criada para a disciplina de Compiladores / Construção de Compiladores (UFRPE).
+Linguagem de programação imperativa criada para a disciplina de Compiladores (UFRPE).
 
 Equipe:
-- Douglas Guilherme
-- Erick Johnathan
-- Matheus Hardyy H H C Gomes
+- Douglas G P Bezerra
+- Erick J M Santos
+- Matheus H H H C Gomes
 
 ---
 
