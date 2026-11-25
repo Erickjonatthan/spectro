@@ -4,3 +4,6 @@ b R$ {5}
 c R$ {2}
 res R$ {(a + b) * c - a / b}
 ss(#Resultado expr: #, res)
+
+? EXPECT-EXIT: 0
+? EXPECT-STDOUT: Resultado expr: 28

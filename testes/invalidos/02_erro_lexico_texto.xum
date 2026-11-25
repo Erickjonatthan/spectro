@@ -1,3 +1,7 @@
 ? Erro lexico: texto sem fechar hashtag
 msg txt {#Texto nao fechado
 ss(msg)
+
+? EXPECT-EXIT: 1
+? EXPECT-STDOUT-CONTAINS: ERRO léxico
+? EXPECT-STDOUT-CONTAINS: texto não fechado com '#'

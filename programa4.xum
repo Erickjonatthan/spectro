@@ -3,3 +3,6 @@ funsao dobro(n R$) %
     retorne n * 2
 %
 ss(dobro(7))
+
+? EXPECT-EXIT: 0
+? EXPECT-STDOUT: 14

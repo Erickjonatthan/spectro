@@ -1,2 +1,5 @@
 ? Erro semantico: variavel nao declarada
 y R$ { variavel_fantasma + 1 }
+
+? EXPECT-EXIT: 1
+? EXPECT-STDOUT-CONTAINS: ERRO --> Variável não encontrada {variavel_fantasma}

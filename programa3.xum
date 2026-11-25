@@ -4,3 +4,6 @@ ate (i R$ 1 << 6) ent %
     total { total + i }
 %
 ss(#Soma de 1 a 5: #, total)
+
+? EXPECT-EXIT: 0
+? EXPECT-STDOUT: Soma de 1 a 5: 15

@@ -6,3 +6,6 @@ se (idade => 18) ent %
 senao %
     ss(#Menor de idade#)
 %
+
+? EXPECT-EXIT: 0
+? EXPECT-STDOUT: Maior de idade

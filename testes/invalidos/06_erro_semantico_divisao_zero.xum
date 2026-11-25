@@ -1,2 +1,5 @@
 ? Erro semantico: divisao por zero
 z R$ { 5 / 0 }
+
+? EXPECT-EXIT: 1
+? EXPECT-STDOUT-CONTAINS: ERRO --> Operação inválida {divisão por zero}

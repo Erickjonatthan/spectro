@@ -13,3 +13,11 @@ repete %
         pare
     %
 %
+
+? EXPECT-EXIT: 0
+? EXPECT-STDOUT: Enquanto: 1
+? EXPECT-STDOUT: Enquanto: 2
+? EXPECT-STDOUT: Enquanto: 3
+? EXPECT-STDOUT: Repete: 10
+? EXPECT-STDOUT: Repete: 9
+? EXPECT-STDOUT: Repete: 8

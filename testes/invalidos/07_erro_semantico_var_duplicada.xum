@@ -1,3 +1,6 @@
 ? Erro semantico: variavel duplicada no mesmo escopo
 total R$ {10}
 total R$ {20}
+
+? EXPECT-EXIT: 1
+? EXPECT-STDOUT-CONTAINS: ERRO --> Variável duplicada {total}

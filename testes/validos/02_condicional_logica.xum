@@ -7,3 +7,6 @@ se (idade => 18 | autorizado == vdd) ent %
 senao %
     ss(#Acesso negado#)
 %
+
+? EXPECT-EXIT: 0
+? EXPECT-STDOUT: Acesso liberado

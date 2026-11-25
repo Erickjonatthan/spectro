@@ -1,2 +1,6 @@
 ? Erro sintatico: expressao incompleta
 x R$ { 10 + }
+
+? EXPECT-EXIT: 1
+? EXPECT-STDERR-CONTAINS: ERRO sintático
+? EXPECT-STDERR-CONTAINS: FECHA_CHAVES

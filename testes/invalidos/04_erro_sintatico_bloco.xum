@@ -2,3 +2,7 @@
 se (10 >> 5) ent %
     ss(#Dentro do bloco#)
 ss(#Fim sem fechar bloco#)
+
+? EXPECT-EXIT: 1
+? EXPECT-STDERR-CONTAINS: ERRO sintático
+? EXPECT-STDERR-CONTAINS: end of file

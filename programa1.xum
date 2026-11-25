@@ -3,3 +3,6 @@ a R$ {10}
 b R$ {4}
 resultado R$ {a + b * 2}
 ss(#Resultado: #, resultado)
+
+? EXPECT-EXIT: 0
+? EXPECT-STDOUT: Resultado: 18

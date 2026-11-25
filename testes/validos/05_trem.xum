@@ -5,3 +5,9 @@ minha_lista[1] { 99 }
 ss(#Lista modificada: #, minha_lista)
 ss(#Item 0: #, minha_lista[0])
 ss(#Item 1: #, minha_lista[1])
+
+? EXPECT-EXIT: 0
+? EXPECT-STDOUT: Lista original: [10, 20, 30]
+? EXPECT-STDOUT: Lista modificada: [10, 99, 30]
+? EXPECT-STDOUT: Item 0: 10
+? EXPECT-STDOUT: Item 1: 99
