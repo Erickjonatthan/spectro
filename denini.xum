@@ -1,0 +1,8 @@
+i R$ {10}
+enquanto (i >> 0) ent %
+    i{i-1}
+    ss(i-2)
+%
+screenshot(#fim#)
+
+? Arquivo de teste do professor

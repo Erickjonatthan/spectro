@@ -5,6 +5,14 @@
 #include "arvore.h"
 /* Arquivo de tokens gerado pelo Bison a partir de sintatico.y */
 #include "sintatico.tab.h"
+
+static int ultimo_caractere = '\n';
+static int quebra_final_emitida = 0;
+
+#define YY_USER_ACTION \
+    do { \
+        if (yyleng > 0) ultimo_caractere = (unsigned char) yytext[yyleng - 1]; \
+    } while (0);
 %}
 
 /* noyywrap: leitura de arquivo único
@@ -102,6 +110,14 @@
 .               {
                   printf("ERRO léxico na linha %d: caractere '%s' desconhecido\n", yylineno, yytext);
                   exit(1);
+                }
+
+<<EOF>>         {
+                  if (!quebra_final_emitida) {
+                      quebra_final_emitida = 1;
+                      if (ultimo_caractere != '\n') return FIM_LINHA;
+                  }
+                  return 0;
                 }
 
 %%
